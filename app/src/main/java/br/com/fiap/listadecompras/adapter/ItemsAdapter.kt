@@ -1,4 +1,4 @@
-package br.com.fiap.listadecompras
+package br.com.fiap.listadecompras.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,12 +6,15 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import br.com.fiap.listadecompras.R
+import br.com.fiap.listadecompras.model.ItemModel
 
 class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
 
-    private val items = mutableListOf<ItemModel>()
+    private var items = listOf<ItemModel>()
 
     class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
         val textView = view.findViewById<TextView>(R.id.textViewItem)
         val button = view.findViewById<ImageButton>(R.id.imageButton)
 
@@ -35,14 +38,9 @@ class ItemsAdapter : RecyclerView.Adapter<ItemsAdapter.ItemViewHolder>() {
         val item = items[position]
         holder.bind(item)
     }
-
-    fun addItem(newItem: ItemModel) {
-        items.add(newItem)
+    fun updateItems(newItems: List<ItemModel>) {
+        items = newItems
         notifyDataSetChanged()
     }
 
-    fun removeItem(item: ItemModel) {
-        items.remove(item)
-        notifyDataSetChanged()
-    }
 }
